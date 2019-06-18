@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../model/task.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.sass']
 })
-export class TaskListComponent {  
+export class TaskListComponent implements OnInit {
+  constructor(private store: Store<AppState>) { }
 
-  constructor() { }
+  public tasks: Task[] = [];
 
-  public tasks: Task[] = [
-    new Task('Task 1', 'Alex'),
-    new Task('Task 2', 'Max'),
-    new Task('Task 3', 'Max'),
-  ]
-
+  ngOnInit(): void {
+    this.store.select('taskPage')
+      .subscribe(({ tasks }) => {
+        this.tasks = tasks;
+      })
+  }
 }
