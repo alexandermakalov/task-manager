@@ -3,13 +3,14 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromTasks from './../../state'
+import { TaskItem } from '../../components/task-item/task-item';
 
 
 @Component({
   templateUrl: './dashboard-shell.component.html'
 })
 export class DashboardShellComponent implements OnInit {
-  tasks$: Observable<any>;
+  tasks$: Observable<TaskItem[]>;
 
   constructor(private store: Store<fromTasks.State>) {}
 

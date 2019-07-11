@@ -10,7 +10,7 @@ export interface State extends fromRoot.State {
 }
 
 // Selector functions
-const getTasksFeatureState = createFeatureSelector<fromTasks.TaskListState>('taskPage');
+const getTasksFeatureState = createFeatureSelector<fromTasks.TaskListState>('tasks');
 
 export const getTasks = createSelector(
     getTasksFeatureState,
