@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../model/task.model';
+import { TaskItem } from './task-item';
 
 @Component({
   selector: 'app-task-item',
@@ -8,5 +8,5 @@ import { Task } from '../model/task.model';
 })
 export class TaskItemComponent {
 
-  @Input() task: Task;
+  @Input() task: TaskItem;
 }
