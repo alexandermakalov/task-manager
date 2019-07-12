@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import * as fromTasks from './../../state'
 import { TaskItem } from '../../components/task-item/task-item';
+import * as taskListActions from '../../state/task-list.actions';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class DashboardShellComponent implements OnInit {
   constructor(private store: Store<fromTasks.State>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(new taskListActions.LoadTasks());
     this.tasks$ = this.store.pipe(select(fromTasks.getTasks));
   }
 }

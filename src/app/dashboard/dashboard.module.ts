@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/task-list.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
-// import { ProductEffects } from './state/product.effects';
+import { DashboardEffects } from './state/task-list.effects';
 
 const dashbaordRoutes: Routes = [
   { path: '', component: DashboardShellComponent }
@@ -21,9 +21,9 @@ const dashbaordRoutes: Routes = [
     SharedModule,
     RouterModule.forChild(dashbaordRoutes),
     StoreModule.forFeature('tasks', reducer),
-    // EffectsModule.forFeature(
-    //   [ ProductEffects ]
-    // ),
+    EffectsModule.forFeature(
+      [ DashboardEffects ]
+    ),
   ],
   declarations: [
     DashboardShellComponent,

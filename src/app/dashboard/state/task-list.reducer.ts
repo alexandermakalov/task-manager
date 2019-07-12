@@ -19,6 +19,17 @@ const initialState: TaskListState = {
 export function reducer(state = initialState, action: any): TaskListState {
 
   switch (action.type) {
+    case TaskListActionTypes.LoadTasksSuccess:
+      return {
+        ...state,
+        tasks: action.payload
+      };
+
+    case TaskListActionTypes.LoadTasksFail:
+      return {
+        ...state,
+        tasks: [],
+      };
     default:
       return state;
   }

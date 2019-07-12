@@ -2,15 +2,29 @@ import { TaskItem } from '../components/task-item/task-item';
 
 /* NgRx */
 import { Action } from '@ngrx/store';
-import { TaskListState } from './task-list.reducer';
 
 export enum TaskListActionTypes {
-TestCheck = '[TaskList] test check'
+    LoadTasks = '[Dashboard] Load',
+    LoadTasksSuccess = '[Dashboard] Load Tasks Success',
+    LoadTasksFail = '[Dashboard] Load Tasks Fail',
 }
 
-// Action Creators
-export class TestCheck implements Action {
-    readonly type = TaskListActionTypes.TestCheck;
+export class LoadTasks implements Action {
+    readonly type = TaskListActionTypes.LoadTasks;
 }
 
-export type TaskListActions = TestCheck;
+export class LoadTasksSuccess implements Action {
+    readonly type = TaskListActionTypes.LoadTasksSuccess;
+
+    constructor(public payload: TaskItem[]) { }
+}
+
+export class LoadTasksFail implements Action {
+    readonly type = TaskListActionTypes.LoadTasksFail;
+
+    constructor(public payload: string) { }
+}
+
+export type TaskListActions = LoadTasks |
+    LoadTasksSuccess |
+    LoadTasksFail;
