@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskItem } from '../task-item/task-item';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,11 +10,13 @@ import * as taskListActions from '../../state/task-list.actions';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.sass']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent {
   @Input() tasks: TaskItem[];
-  constructor(private store: Store<fromTasks.State>) { }
+  @Output() selected = new EventEmitter<TaskItem>();
 
-  ngOnInit(): void {
-    
+  constructor() { }
+
+  selectTask(task: TaskItem) {
+    this.selected.emit(task);
   }
 }

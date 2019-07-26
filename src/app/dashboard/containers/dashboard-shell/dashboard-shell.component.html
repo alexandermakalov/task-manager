@@ -1,5 +1,6 @@
 <div>
   <app-task-list
   [tasks]="tasks$ | async"
+  (selected)="taskSelected($event)"
   ></app-task-list>
 </div>

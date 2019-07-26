@@ -1,1 +1,6 @@
-<app-task-item [task]="t" *ngFor="let t of tasks"> </app-task-item>
+<app-task-item
+  [task]="t"
+  *ngFor="let t of tasks"
+  (click)="selectTask(t)"
+>
+</app-task-item>

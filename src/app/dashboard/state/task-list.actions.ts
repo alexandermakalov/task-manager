@@ -7,6 +7,7 @@ export enum TaskListActionTypes {
     LoadTasks = '[Dashboard] Load',
     LoadTasksSuccess = '[Dashboard] Load Tasks Success',
     LoadTasksFail = '[Dashboard] Load Tasks Fail',
+    SetCurrentTask = '[Dashboard] Set Current Task',
 }
 
 export class LoadTasks implements Action {
@@ -25,6 +26,13 @@ export class LoadTasksFail implements Action {
     constructor(public payload: string) { }
 }
 
+export class SetCurrentTask implements Action {
+    readonly type = TaskListActionTypes.SetCurrentTask;
+  
+    constructor(public payload: TaskItem) { }
+  }
+
 export type TaskListActions = LoadTasks |
     LoadTasksSuccess |
-    LoadTasksFail;
+    LoadTasksFail |
+    SetCurrentTask;

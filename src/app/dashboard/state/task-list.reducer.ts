@@ -1,22 +1,18 @@
 import { TaskItem } from '../components/task-item/task-item';
-import { TaskListActionTypes } from './task-list.actions';
+import { TaskListActionTypes, TaskListActions } from './task-list.actions';
 
 // State for this feature (Product)
-export interface TaskListState {
-  tasks: TaskItem[]
+export interface DashboardState {
+  tasks: TaskItem[],
+  selectedTaskItemId: String | null,
 }
 
-const initialState: TaskListState = {
-  tasks: [
-    {
-      id: 1,
-      title: 'One',
-      author: 'Alex',
-    }
-  ],
+const initialState: DashboardState = {
+  tasks: [],
+  selectedTaskItemId: null,
 };
 
-export function reducer(state = initialState, action: any): TaskListState {
+export function reducer(state = initialState, action: TaskListActions): DashboardState {
 
   switch (action.type) {
     case TaskListActionTypes.LoadTasksSuccess:
@@ -30,6 +26,11 @@ export function reducer(state = initialState, action: any): TaskListState {
         ...state,
         tasks: [],
       };
+      case TaskListActionTypes.SetCurrentTask:
+        return {
+          ...state,
+          selectedTaskItemId: action.payload._id
+        };
     default:
       return state;
   }

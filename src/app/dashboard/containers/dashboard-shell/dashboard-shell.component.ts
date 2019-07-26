@@ -12,11 +12,17 @@ import * as taskListActions from '../../state/task-list.actions';
 })
 export class DashboardShellComponent implements OnInit {
   tasks$: Observable<TaskItem[]>;
+  selectedTask$: Observable<TaskItem>;
 
   constructor(private store: Store<fromTasks.State>) {}
 
   ngOnInit(): void {
     this.store.dispatch(new taskListActions.LoadTasks());
     this.tasks$ = this.store.pipe(select(fromTasks.getTasks));
+    this.selectedTask$ = this.store.pipe(select(fromTasks.getCurrentTask))
+  }
+
+  taskSelected(task: TaskItem): void {
+    this.store.dispatch(new taskListActions.SetCurrentTask(task));
   }
 }
