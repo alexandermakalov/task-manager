@@ -11,6 +11,7 @@ import { reducer } from './state/task-list.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardEffects } from './state/task-list.effects';
+import { TaskEditComponent } from './components/task-edit/task-edit.component';
 
 const dashbaordRoutes: Routes = [
   { path: '', component: DashboardShellComponent }
@@ -28,7 +29,8 @@ const dashbaordRoutes: Routes = [
   declarations: [
     DashboardShellComponent,
     TaskItemComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskEditComponent,
   ]
 })
 export class DashboardModule { }

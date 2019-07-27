@@ -1,0 +1,67 @@
+<div class="card" *ngIf="task">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveTask()" [formGroup]="taskForm">
+      <fieldset>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="taskNameId">Task title</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.title }" 
+                   class="form-control" 
+                   id="taskNameId" 
+                   type="text" 
+                   placeholder="title (required)" 
+                   formControlName="title" 
+                   (blur)="blur()" />
+            <span class="invalid-feedback" *ngIf="displayMessage.title">
+              {{displayMessage.title}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="taskAuthorId">Task author</label>
+
+          <div class="col-md-9">
+            <input [ngClass]="{'is-invalid': displayMessage.author}" 
+                   class="form-control"
+                   id="taskAuthorId"
+                   type="text"
+                   placeholder="Author (required)"
+                   formControlName="author"
+                   (blur)="blur()" />
+            <span class="invalid-feedback" *ngIf="displayMessage.author">
+              {{displayMessage.author}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <span>
+              <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px" [disabled]="!taskForm.valid || !taskForm.dirty">
+                Save
+              </button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width:80px;margin-right:10px" (click)="cancelEdit()">
+                Cancel
+              </button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width:80px" (click)="deleteTask()">
+                Delete
+              </button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>

@@ -25,4 +25,23 @@ export class DashboardShellComponent implements OnInit {
   taskSelected(task: TaskItem): void {
     this.store.dispatch(new taskListActions.SetCurrentTask(task));
   }
+
+  deleteTask(task: TaskItem): void {
+    // this.store.dispatch(new productActions.DeleteProduct(product.id));
+    console.log('Delete', task);
+  }
+
+  clearTask(): void {
+    // this.store.dispatch(new productActions.ClearCurrentProduct());
+    console.log('clearProduct');
+  }
+  saveTask(task: TaskItem): void {
+    // this.store.dispatch(new productActions.CreateProduct(product));
+    console.log('saveProduct', task);
+  }
+
+  updateTask(task: TaskItem): void {
+    // this.store.dispatch(new productActions.UpdateProduct(product));
+    console.log('updateProduct', task);
+  }
 }

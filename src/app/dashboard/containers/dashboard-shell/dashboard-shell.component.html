@@ -1,6 +1,16 @@
-<div>
-  <app-task-list
-  [tasks]="tasks$ | async"
-  (selected)="taskSelected($event)"
-  ></app-task-list>
-</div>
+<div class='row'>
+    <div class='col-md-4'>
+      <app-task-list
+      [tasks]="tasks$ | async"
+      (selected)="taskSelected($event)"></app-task-list>
+    </div>
+    <div class='col-md-8'>
+      <tm-task-edit
+      [selectedTask]="selectedTask$ | async"
+      (clearCurrent)="clearTask()"
+      (update)="updateTask($event)"
+      (delete)="deleteTask($event)"
+      (create)="saveTask($event)"></tm-task-edit>
+    </div>
+  </div>
+  
