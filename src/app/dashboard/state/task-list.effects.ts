@@ -51,4 +51,16 @@ export class DashboardEffects {
       )
     )
   );
+
+  @Effect()
+  deleteTask$: Observable<Action> = this.actions$.pipe(
+    ofType(taskListActions.TaskListActionTypes.DeleteTask),
+    map((action: taskListActions.DeleteTask) => action.payload),
+    mergeMap((taskId: string) =>
+      this.dashboardService.deleteTask(taskId).pipe(
+        map(() => (new taskListActions.DeleteTaskSuccess(taskId))),
+        catchError(err => of(new taskListActions.DeleteTaskFail(err)))
+      )
+    )
+  );
 }

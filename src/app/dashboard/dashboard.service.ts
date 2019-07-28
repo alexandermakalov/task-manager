@@ -44,6 +44,18 @@ export class DashboardService {
       );
   }
 
+  deleteTask(taskId: string): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.BASE_URL}/task/${taskId}`;
+    return this.http.delete<TaskItem>(url, { headers: headers })
+      .pipe(
+        tap(() => console.log('deleteTask: ' + taskId)),
+        // Return the product on an update
+        map(() => taskId),
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

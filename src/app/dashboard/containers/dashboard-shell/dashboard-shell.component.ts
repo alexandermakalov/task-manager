@@ -27,8 +27,7 @@ export class DashboardShellComponent implements OnInit {
   }
 
   deleteTask(task: TaskItem): void {
-    // this.store.dispatch(new productActions.DeleteProduct(product.id));
-    console.log('Delete', task);
+    this.store.dispatch(new taskListActions.DeleteTask(task._id));
   }
 
   clearTask(): void {
@@ -36,12 +35,10 @@ export class DashboardShellComponent implements OnInit {
     console.log('clearProduct');
   }
   saveTask(task: TaskItem): void {
-    // this.store.dispatch(new productActions.CreateProduct(product));
-    console.log('saveProduct', task);
+    this.store.dispatch(new taskListActions.CreateTask(task));
   }
 
   updateTask(task: TaskItem): void {
     this.store.dispatch(new taskListActions.UpdateTask(task));
-    console.log('updateProduct', task);
   }
 }

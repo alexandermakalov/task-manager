@@ -14,6 +14,10 @@ export enum TaskListActionTypes {
     CreateTask = '[Dashboard] Create Task',
     CreateTaskSuccess = '[Dashboard] Create Task Success',
     CreateTaskFail = '[Dashboard] Create Task Fail',
+    DeleteTask = '[Dashboard] Delete Task',
+    DeleteTaskSuccess = '[Dashboard] Delete Task Success',
+    DeleteTaskFail = '[Dashboard] Delete Task Fail',
+    CreateEmptyTask = '[Dashboard] Create Empty task',
 }
 
 export class LoadTasks implements Action {
@@ -72,6 +76,26 @@ export class CreateTaskFail implements Action {
     constructor(public payload: string) { }
 }
 
+export class DeleteTask implements Action {
+    readonly type = TaskListActionTypes.DeleteTask;
+    constructor(public payload: string) {};
+}
+
+export class DeleteTaskSuccess implements Action {
+    readonly type = TaskListActionTypes.DeleteTaskSuccess;
+
+    constructor(public payload: string) { }
+}
+
+export class DeleteTaskFail implements Action {
+    readonly type = TaskListActionTypes.DeleteTaskFail;
+
+    constructor(public payload: string) { }
+}
+
+export class CreateEmptyTask implements Action {
+    readonly type = TaskListActionTypes.CreateEmptyTask;
+}
 export type TaskListActions = LoadTasks |
     LoadTasksSuccess |
     LoadTasksFail |
@@ -81,4 +105,8 @@ export type TaskListActions = LoadTasks |
     UpdateTaskFail |
     CreateTask |
     CreateTaskSuccess |
-    CreateTaskFail;
+    CreateTaskFail |
+    DeleteTask |
+    DeleteTaskSuccess |
+    DeleteTaskFail |
+    CreateEmptyTask;

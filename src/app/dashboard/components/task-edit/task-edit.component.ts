@@ -122,7 +122,7 @@ export class TaskEditComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   deleteTask(): void {
-    if (this.task && this.task._id) {
+    if (this.task && this.task._id !== 'new') {
       if (confirm(`Really delete the task: ${this.task.title}?`)) {
         this.delete.emit(this.task);
       }
@@ -138,9 +138,9 @@ export class TaskEditComponent implements OnInit, OnChanges, OnDestroy {
         // Copy over all of the original product properties
         // Then copy over the values from the form
         // This ensures values not on the form, such as the Id, are retained
-        const p = { ...this.task, ...this.taskForm.value };
+        const p: TaskItem = { ...this.task, ...this.taskForm.value };
 
-        if (p.id === 0) {
+        if (p._id === 'new') {
           this.create.emit(p);
         } else {
           this.update.emit(p);

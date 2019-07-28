@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-md-2">#</div>
+<div class="row bg-light rounded border-bottom border-dark ml-2">
+  <div class="col-md-2 border-right border-dark">#</div>
   <div class="col-md-10">Title</div>
 </div>
 <app-task-item
@@ -7,6 +7,6 @@
   [index]="i"
   *ngFor="let t of tasks; index as i"
   (click)="selectTask(t)"
-  class="row"
+  class="row ml-2"
 >
 </app-task-item>

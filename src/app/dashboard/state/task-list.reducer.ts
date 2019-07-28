@@ -59,6 +59,25 @@ export function reducer(state = initialState, action: TaskListActions): Dashboar
               ...state,
               selectedTaskItemId: null
             };
+
+            case TaskListActionTypes.DeleteTaskSuccess:
+              return {
+                ...state,
+                tasks: state.tasks.filter(task => task._id !== action.payload),
+                selectedTaskItemId: null
+              };
+        
+            case TaskListActionTypes.DeleteTaskFail:
+              return {
+                ...state,
+                selectedTaskItemId: null
+              };
+
+              case TaskListActionTypes.CreateEmptyTask:
+                return {
+                  ...state,
+                  selectedTaskItemId: 'new'
+                };
     default:
       return state;
   }

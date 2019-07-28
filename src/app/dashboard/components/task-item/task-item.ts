@@ -1,5 +1,5 @@
 export interface TaskItem {
-    _id: String | null;
+    _id: string | null;
     title: string;
     author: string;
 }
