@@ -9,4 +9,5 @@ import { TaskItem } from './task-item';
 export class TaskItemComponent {
 
   @Input() task: TaskItem;
+  @Input() index: number;
 }

@@ -22,6 +22,27 @@ export class DashboardService {
         catchError(this.handleError)
       );
   }
+  createTask(task: TaskItem): Observable<TaskItem> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    task._id = null;
+    return this.http.post<TaskItem>(`${this.BASE_URL}/task`, task, { headers: headers })
+      .pipe(
+        tap(data => console.log('createTask: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  updateTask(task: TaskItem): Observable<TaskItem> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.BASE_URL}/task/${task._id}`;
+    return this.http.put<TaskItem>(url, task, { headers: headers })
+      .pipe(
+        tap(() => console.log('updateTask: ' + task._id)),
+        // Return the product on an update
+        map(() => task),
+        catchError(this.handleError)
+      );
+  }
 
   private handleError(err) {
     // in a real world app, we may send the server to some remote logging infrastructure

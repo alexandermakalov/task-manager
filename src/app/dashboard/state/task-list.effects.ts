@@ -27,4 +27,28 @@ export class DashboardEffects {
       )
     )
   );
+
+  @Effect()
+  updateTask$: Observable<Action> = this.actions$.pipe(
+    ofType(taskListActions.TaskListActionTypes.UpdateTask),
+    map((action: taskListActions.UpdateTask) => action.payload),
+    mergeMap((task: TaskItem) =>
+      this.dashboardService.updateTask(task).pipe(
+        map(updatedTask => (new taskListActions.UpdateTaskSuccess(updatedTask))),
+        catchError(err => of(new taskListActions.UpdateTaskFail(err)))
+      )
+    )
+  );
+
+  @Effect()
+  createTask$: Observable<Action> = this.actions$.pipe(
+    ofType(taskListActions.TaskListActionTypes.CreateTask),
+    map((action: taskListActions.CreateTask) => action.payload),
+    mergeMap((task: TaskItem) =>
+      this.dashboardService.createTask(task).pipe(
+        map(createdTask => (new taskListActions.CreateTaskSuccess(createdTask))),
+        catchError(err => of(new taskListActions.CreateTaskFail(err)))
+      )
+    )
+  );
 }

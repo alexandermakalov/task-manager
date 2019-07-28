@@ -1,2 +1,12 @@
-<app-task-item [task]="t" *ngFor="let t of tasks" (click)="selectTask(t)">
+<div class="row">
+  <div class="col-md-2">#</div>
+  <div class="col-md-10">Title</div>
+</div>
+<app-task-item
+  [task]="t"
+  [index]="i"
+  *ngFor="let t of tasks; index as i"
+  (click)="selectTask(t)"
+  class="row"
+>
 </app-task-item>

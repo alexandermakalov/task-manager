@@ -31,6 +31,34 @@ export function reducer(state = initialState, action: TaskListActions): Dashboar
           ...state,
           selectedTaskItemId: action.payload._id
         };
+
+        case TaskListActionTypes.UpdateTaskSuccess:
+          const updatedTasks = state.tasks.map(
+            item => action.payload._id === item._id ? action.payload : item);
+          return {
+            ...state,
+            tasks: updatedTasks,
+            selectedTaskItemId: action.payload._id,
+          };
+    
+        case TaskListActionTypes.UpdateTaskFail:
+          return {
+            ...state,
+            selectedTaskItemId: null
+          };
+
+          case TaskListActionTypes.CreateTaskSuccess:
+            return {
+              ...state,
+              tasks: [...state.tasks, action.payload],
+              selectedTaskItemId: action.payload._id,
+            };
+      
+          case TaskListActionTypes.CreateTaskFail:
+            return {
+              ...state,
+              selectedTaskItemId: null
+            };
     default:
       return state;
   }

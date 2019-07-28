@@ -41,7 +41,7 @@ export class DashboardShellComponent implements OnInit {
   }
 
   updateTask(task: TaskItem): void {
-    // this.store.dispatch(new productActions.UpdateProduct(product));
+    this.store.dispatch(new taskListActions.UpdateTask(task));
     console.log('updateProduct', task);
   }
 }

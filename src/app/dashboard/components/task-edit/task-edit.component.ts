@@ -102,9 +102,9 @@ export class TaskEditComponent implements OnInit, OnChanges, OnDestroy {
 
       // Display the appropriate page title
       if (this.task._id === 'new') {
-        this.pageTitle = 'Add Product';
+        this.pageTitle = 'Add Task';
       } else {
-        this.pageTitle = `Edit Product: ${this.task.title}`;
+        this.pageTitle = `Edit Task: ${this.task.title}`;
       }
 
       // Update the data on the form
@@ -123,7 +123,7 @@ export class TaskEditComponent implements OnInit, OnChanges, OnDestroy {
 
   deleteTask(): void {
     if (this.task && this.task._id) {
-      if (confirm(`Really delete the product: ${this.task.title}?`)) {
+      if (confirm(`Really delete the task: ${this.task.title}?`)) {
         this.delete.emit(this.task);
       }
     } else {
